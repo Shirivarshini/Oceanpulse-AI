@@ -1,11 +1,37 @@
-// Shapes mirror API_CONTRACT.md exactly. Do not rename fields.
+// Types for the existing OceanPulse Backend API.
+// These types intentionally mirror the Backend response contract.
 
-export type IndexLevel = "STABLE" | "WATCH" | "STRESSED" | "CRITICAL";
-export type AlertStatus = "NO_ALERT" | "ALERT_DISPATCHED" | "ALERT_BLOCKED_STALE";
-export type DataSource = "LIVE" | "CACHED" | "HISTORICAL" | "DEMO";
-export type Severity = "low" | "medium" | "high";
-export type SpeciesStatus = "common" | "rare" | "invasive";
-export type Scenario = "healthy_reef" | "declining_fishery" | "coral_bleaching";
+export type ScenarioId =
+  | "healthy_reef"
+  | "declining_fishery"
+  | "coral_bleaching";
+
+export type IndexLevel =
+  | "STABLE"
+  | "WATCH"
+  | "STRESSED"
+  | "CRITICAL";
+
+export type AlertDecision =
+  | "NO_ALERT"
+  | "ALERT_DISPATCHED"
+  | "ALERT_BLOCKED_STALE";
+
+export type SourceStatus =
+  | "LIVE"
+  | "CACHED"
+  | "HISTORICAL"
+  | "DEMO";
+
+export type FactorSeverity =
+  | "low"
+  | "medium"
+  | "high";
+
+export type FactorCategory =
+  | "ocean"
+  | "fisheries"
+  | "molecular";
 
 export interface Region {
   id: string;
@@ -14,11 +40,11 @@ export interface Region {
   longitude: number;
 }
 
-export interface Factor {
+export interface ContributingFactor {
   name: string;
-  category: "ocean" | "fisheries" | "molecular";
+  category: FactorCategory;
   impact: number;
-  severity: Severity;
+  severity: FactorSeverity;
   description: string;
 }
 
@@ -28,30 +54,74 @@ export interface TimelinePoint {
   event: string;
 }
 
-export interface Alert {
-  status: AlertStatus;
+export interface AlertGateResult {
   threshold: number;
-  reason: string;
-}
-
-export interface Analysis {
-  analysis_id: string;
-  region: Region;
   index: number;
-  level: IndexLevel;
-  confidence: number;
-  factors: Factor[];
-  timeline: TimelinePoint[];
-  alert: Alert;
-  sources: Record<"ocean" | "fisheries" | "molecular", DataSource>;
-  created_at: string;
+  status: AlertDecision;
+  reason: string;
 }
 
 export interface SpeciesMatch {
   taxon: string;
   match_confidence: number;
-  status: SpeciesStatus;
-  source: DataSource;
+  status: "common" | "rare" | "invasive";
+  source: SourceStatus;
+}
+
+export interface BackendSources {
+  ocean: SourceStatus;
+  fisheries: SourceStatus;
+  molecular: SourceStatus;
+}
+
+export interface DataSource {
+  id: string;
+  name: string;
+  status: SourceStatus;
+  detail: string;
+}
+
+export interface MapMarker {
+  id: string;
+  kind: "vessel" | "edna" | "station";
+  label: string;
+  lat: number;
+  lon: number;
+  severity: FactorSeverity;
+}
+
+export interface AnalysisResult {
+  analysis_id: string;
+  region: Region;
+  scenario: ScenarioId;
+  period: string;
+  index: number;
+  level: IndexLevel;
+  confidence: number;
+  factors: ContributingFactor[];
+  timeline: TimelinePoint[];
+  alert: AlertGateResult;
+  species: SpeciesMatch[];
+  markers: MapMarker[];
+  sources: DataSource[];
+  source: SourceStatus;
+  created_at: string;
+}
+
+export interface AnalyzeRequest {
+  region_id: string;
+  scenario: ScenarioId;
+  period: string;
+}
+
+export interface DemoAnalyzeRequest {
+  scenario: ScenarioId;
+}
+
+export interface HealthResponse {
+  status: "ok" | "degraded";
+  service: string;
+  version: string;
 }
 
 export function levelFromIndex(index: number): IndexLevel {
@@ -61,7 +131,6 @@ export function levelFromIndex(index: number): IndexLevel {
   return "STABLE";
 }
 
-/** Coral Alert is reserved for genuinely critical states. */
-export function isCritical(level: IndexLevel) {
+export function isCritical(level: IndexLevel): boolean {
   return level === "CRITICAL" || level === "STRESSED";
 }

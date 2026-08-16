@@ -1,44 +1,58 @@
-import { Waves, Fish, Dna } from "lucide-react";
-import type { Factor } from "@/lib/oceanpulse/types";
+import { FactorRow } from "./FactorRow";
+import { DataSourceLabel } from "./DataSourceLabel";
+import { Panel } from "./Panel";
+import { Skeleton } from "./LoadingState";
+import type {
+  ContributingFactor,
+  SourceStatus,
+} from "@/lib/oceanpulse/types";
 
-const ICON = { ocean: Waves, fisheries: Fish, molecular: Dna } as const;
+interface ContributingFactorsProps {
+  factors: ContributingFactor[];
+  source: SourceStatus;
+  loading: boolean;
+}
 
-export function ContributingFactors({ factors }: { factors: Factor[] }) {
+export function ContributingFactors({
+  factors,
+  source,
+  loading,
+}: ContributingFactorsProps) {
+  if (loading) {
+    return (
+      <Panel
+        title="Contributing Factors"
+        subtitle="Signals contributing to the current ecosystem index."
+      >
+        <div className="space-y-3">
+          <Skeleton className="h-16 w-full" />
+          <Skeleton className="h-16 w-full" />
+          <Skeleton className="h-16 w-full" />
+        </div>
+      </Panel>
+    );
+  }
+
   return (
-    <section className="rounded-[10px] bg-trench p-6">
-      <h3 className="text-[15px] font-medium tracking-wide text-sea-fog uppercase">
-        Contributing factors
-      </h3>
-
-      <ul className="mt-4">
-        {factors.map((factor) => {
-          const Icon = ICON[factor.category];
-          const major = factor.severity === "high";
-          return (
-            <li
-              key={factor.name}
-              className="flex items-start gap-3 border-b border-reef-shadow py-3 last:border-b-0"
-            >
-              <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-reef-shadow">
-                <Icon className="size-4 text-slate-tide" strokeWidth={1} />
-              </span>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="truncate text-[15px] text-shell">{factor.name}</p>
-                  <span className="flex items-center gap-2">
-                    <span className="text-[13px] text-sea-fog">+{factor.impact}</span>
-                    <span
-                      aria-label={`${factor.severity} severity`}
-                      className={`size-2 rounded-full ${major ? "bg-coral-alert" : "bg-bioluminescence"}`}
-                    />
-                  </span>
-                </div>
-                <p className="mt-1 text-[13px] text-slate-tide">{factor.description}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
+    <Panel
+      title="Contributing Factors"
+      subtitle="Signals contributing to the current ecosystem index."
+      right={<DataSourceLabel status={source} />}
+    >
+      {factors.length === 0 ? (
+        <div className="py-8 text-center text-sm text-muted-foreground">
+          No contributing factors available.
+        </div>
+      ) : (
+        <div>
+          {factors.map((factor, index) => (
+            <FactorRow
+              key={`${factor.key}-${factor.name}-${index}`}
+              factor={factor}
+            />
+          ))}
+        </div>
+      )}
+    </Panel>
   );
 }
