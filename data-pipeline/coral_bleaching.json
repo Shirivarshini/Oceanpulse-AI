@@ -1,0 +1,104 @@
+{
+  "scenario": "coral_bleaching",
+  "region": {
+    "id": "gulf-of-mannar",
+    "name": "Gulf of Mannar",
+    "latitude": 9.0,
+    "longitude": 79.0
+  },
+  "generated_at": "2026-08-15T06:00:00Z",
+  "expected_result": {
+    "index": 88,
+    "level": "CRITICAL",
+    "alert": "ALERT_DISPATCHED",
+    "threshold": 70
+  },
+  "expected_timeline": [
+    { "timestamp": "2026-08-12T10:00:00Z", "index": 28, "event": "Baseline" },
+    { "timestamp": "2026-08-13T10:00:00Z", "index": 55, "event": "Environmental stress increased" },
+    { "timestamp": "2026-08-14T10:00:00Z", "index": 88, "event": "Critical threshold crossed" }
+  ],
+  "records": [
+    {
+      "category": "ocean",
+      "signal": "sea_surface_temperature_anomaly",
+      "value": 0.4,
+      "unit": "degC",
+      "timestamp": "2026-08-12T10:00:00Z",
+      "description": "Baseline temperature near seasonal norm.",
+      "source": "DEMO"
+    },
+    {
+      "category": "ocean",
+      "signal": "sea_surface_temperature_anomaly",
+      "value": 1.8,
+      "unit": "degC",
+      "timestamp": "2026-08-13T10:00:00Z",
+      "description": "Warming signal accelerating above seasonal baseline.",
+      "source": "DEMO"
+    },
+    {
+      "category": "ocean",
+      "signal": "sea_surface_temperature_anomaly",
+      "value": 3.1,
+      "unit": "degC",
+      "timestamp": "2026-08-14T10:00:00Z",
+      "description": "Elevated temperature signal consistent with a bleaching-risk anomaly.",
+      "source": "DEMO"
+    },
+    {
+      "category": "ocean",
+      "signal": "chlorophyll_a_anomaly",
+      "value": 0.4,
+      "unit": "mg/m3",
+      "timestamp": "2026-08-14T10:00:00Z",
+      "description": "Chlorophyll-a spike, pattern consistent with a harmful algal bloom indicator.",
+      "source": "DEMO"
+    },
+    {
+      "category": "fisheries",
+      "signal": "cpue_trend",
+      "value": -0.05,
+      "unit": "trend_ratio",
+      "timestamp": "2026-08-12T10:00:00Z",
+      "description": "Catch-per-unit-effort near baseline.",
+      "source": "DEMO"
+    },
+    {
+      "category": "fisheries",
+      "signal": "cpue_trend",
+      "value": -0.51,
+      "unit": "trend_ratio",
+      "timestamp": "2026-08-14T10:00:00Z",
+      "description": "Catch-per-unit-effort shows a sharp declining trend.",
+      "source": "DEMO"
+    },
+    {
+      "category": "molecular",
+      "signal": "species_richness",
+      "value": 29,
+      "unit": "taxa_count",
+      "timestamp": "2026-08-12T10:00:00Z",
+      "description": "Baseline taxa richness before stress onset.",
+      "source": "DEMO"
+    },
+    {
+      "category": "molecular",
+      "signal": "species_richness",
+      "value": 17,
+      "unit": "taxa_count",
+      "timestamp": "2026-08-14T10:00:00Z",
+      "description": "eDNA results indicate reduced observed richness, pattern consistent with declining biodiversity.",
+      "source": "DEMO"
+    },
+    {
+      "category": "molecular",
+      "signal": "rare_invasive_taxon_flag",
+      "value": true,
+      "unit": "boolean",
+      "timestamp": "2026-08-14T10:00:00Z",
+      "description": "Molecular signal suggests presence of a rare taxon (match confidence 82%).",
+      "source": "DEMO"
+    }
+  ]
+}

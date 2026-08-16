@@ -1,0 +1,9 @@
+sample_id,region_id,timestamp,taxon,confidence,status,read_count,source
+sample-001,gulf-of-mannar,2026-08-15T06:00:00Z,Chaetodon collare,0.95,common,4820,DEMO
+sample-001,gulf-of-mannar,2026-08-15T06:00:00Z,Acropora formosa,0.93,common,4110,DEMO
+sample-001,gulf-of-mannar,2026-08-15T06:00:00Z,Thalassia hemprichii,0.91,common,3765,DEMO
+sample-002,gulf-of-mannar,2026-08-15T06:00:00Z,Chaetodon collare,0.90,common,2210,DEMO
+sample-002,gulf-of-mannar,2026-08-15T06:00:00Z,Lutjanus argentimaculatus,0.88,common,1875,DEMO
+sample-003,gulf-of-mannar,2026-08-14T10:00:00Z,Chaetodon collare,0.96,common,1340,DEMO
+sample-003,gulf-of-mannar,2026-08-14T10:00:00Z,Pterois volitans,0.82,rare,412,DEMO
+sample-003,gulf-of-mannar,2026-08-14T10:00:00Z,Acanthaster planci,0.79,invasive,298,DEMO

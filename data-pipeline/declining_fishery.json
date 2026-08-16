@@ -1,0 +1,71 @@
+{
+  "scenario": "declining_fishery",
+  "region": {
+    "id": "gulf-of-mannar",
+    "name": "Gulf of Mannar",
+    "latitude": 9.0,
+    "longitude": 79.0
+  },
+  "generated_at": "2026-08-15T06:00:00Z",
+  "expected_result": {
+    "index": 55,
+    "level": "WATCH",
+    "alert": "NO_ALERT"
+  },
+  "records": [
+    {
+      "category": "ocean",
+      "signal": "sea_surface_temperature_anomaly",
+      "value": 0.9,
+      "unit": "degC",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "Mild warming signal above seasonal baseline.",
+      "source": "DEMO"
+    },
+    {
+      "category": "ocean",
+      "signal": "chlorophyll_a_anomaly",
+      "value": 0.12,
+      "unit": "mg/m3",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "Slightly elevated chlorophyll-a, not yet bloom-level.",
+      "source": "DEMO"
+    },
+    {
+      "category": "fisheries",
+      "signal": "cpue_trend",
+      "value": -0.34,
+      "unit": "trend_ratio",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "Catch-per-unit-effort shows a sustained declining trend.",
+      "source": "DEMO"
+    },
+    {
+      "category": "fisheries",
+      "signal": "vessel_density",
+      "value": 27,
+      "unit": "vessels_per_100km2",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "Vessel density elevated relative to historical baseline, possible overfishing pressure.",
+      "source": "DEMO"
+    },
+    {
+      "category": "molecular",
+      "signal": "species_richness",
+      "value": 22,
+      "unit": "taxa_count",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "Moderate reduction in observed taxa richness versus regional baseline.",
+      "source": "DEMO"
+    },
+    {
+      "category": "molecular",
+      "signal": "rare_invasive_taxon_flag",
+      "value": false,
+      "unit": "boolean",
+      "timestamp": "2026-08-15T06:00:00Z",
+      "description": "No rare or invasive taxa detected in this sample.",
+      "source": "DEMO"
+    }
+  ]
+}
