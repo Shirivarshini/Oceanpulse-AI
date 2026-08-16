@@ -22,20 +22,20 @@ randomness anywhere. Same input always produces the same output.
 ```
 ml/
 ├── fusion_engine/
-│   ├── __init__.py          # public exports
-│   ├── schema.py             # FusionInput / FusionResult dataclasses
-│   ├── scoring.py             # rule-based per-category factor extraction
+│   ├── __init__.py             # public exports
+│   ├── schema.py               # FusionInput / FusionResult dataclasses
+│   ├── scoring.py              # rule-based per-category factor extraction
 │   ├── fusion.py               # FusionEngine — combines factors into the index + level + confidence
 │   └── demo_scenarios.py       # calibrated inputs for the 3 hackathon demos
 ├── tests/
-│   ├── test_fusion_engine.py         # Task 1 unit tests incl. determinism check
-│   ├── test_index_classification.py  # Task 2 boundary + confidence tests
-│   ├── test_explainability.py         # Task 3 factor + timeline tests
-│   └── test_demo_scenarios.py          # Task 4 five-consecutive-runs tests
-├── verify_determinism.py             # Task 1 — Member 3's Hour-5 verification script
-├── verify_boundaries.py               # Task 2 — Member 3's Hour-7 verification script
-├── verify_explainability.py           # Task 3 — Member 3's Hour-9 verification script
-├── verify_demo_scenarios.py           # Task 4 — Member 3's Hour-11 verification script
+│   ├── test_fusion_engine.py          # unit tests incl. determinism check
+│   ├── test_index_classification.py   # boundary + confidence tests
+│   ├── test_explainability.py         # factor + timeline tests
+│   └── test_demo_scenarios.py         # five-consecutive-runs tests
+├── verify_determinism.py              # verification script
+├── verify_boundaries.py               # verification script
+├── verify_explainability.py           # verification script
+├── verify_demo_scenarios.py           # verification script
 ├── requirements.txt
 └── README.md
 ```
@@ -45,10 +45,10 @@ ml/
 ```bash
 cd ml
 python -m pytest tests/ -v          # full test suite (34 tests)
-python verify_determinism.py        # Task 1 — Member 3's Hour-5 sign-off check
-python verify_boundaries.py         # Task 2 — Member 3's Hour-7 sign-off check
-python verify_explainability.py     # Task 3 — Member 3's Hour-9 sign-off check
-python verify_demo_scenarios.py     # Task 4 — Member 3's Hour-11 sign-off check
+python verify_determinism.py        # sign-off check
+python verify_boundaries.py         # sign-off check
+python verify_explainability.py     # sign-off check
+python verify_demo_scenarios.py     # sign-off check
 ```
 
 No dependencies to install for Task 1 — everything here is standard
