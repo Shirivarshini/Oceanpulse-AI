@@ -1,0 +1,9 @@
+# Task 1 (Fusion Engine core) uses only the Python standard library —
+# no dependencies required to run fusion_engine/ or its tests.
+#
+# Pinned here for Phase 5 (ML Integration) per CLAUDE.md's tech stack.
+# Not required until XGBoost/IsolationForest interfaces are added.
+scikit-learn>=1.4,<2.0
+xgboost>=2.0,<3.0
+numpy>=1.26,<2.0
+pytest>=8.0,<10.0
