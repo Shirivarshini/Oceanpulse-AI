@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-Owned by Member 3. Contains the Fusion Engine, scoring, classification, confidence, and explainability.
-=======
 # OceanPulse AI — `ml/` — Insight Fusion Engine
 
 **Task 1 deliverable.** Deterministic, rule-based core described in
 `CLAUDE.md` priority #1 and `implementation_plan.md` Phase 4.
+
+Contains the Fusion Engine, scoring, classification, confidence, and explainability.
 
 ## What this is
 
