@@ -41,11 +41,14 @@ class DemoAnalyzeRequest(BaseModel):
 
 class AnalyzeRequest(BaseModel):
     region_id: str
+    scenario: Literal[
+        "healthy_reef",
+        "declining_fishery",
+        "coral_bleaching",
+    ]
     latitude: float
     longitude: float
     threshold: int = 70
-
-
 class Region(BaseModel):
     id: str
     name: str

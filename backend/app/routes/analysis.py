@@ -76,7 +76,9 @@ def demo_analyze(request: DemoAnalyzeRequest) -> AnalysisResponse:
 
 @router.post("/analyze", response_model=AnalysisResponse)
 def analyze(request: AnalyzeRequest) -> AnalysisResponse:
-    fusion_result = run_demo_fusion("coral_bleaching")
+    # Use the scenario supplied by the frontend instead of
+    # always forcing coral_bleaching.
+    fusion_result = run_demo_fusion(request.scenario)
 
     region = Region(
         id=request.region_id,
